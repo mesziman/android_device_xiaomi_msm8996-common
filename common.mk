@@ -218,6 +218,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libjson
 
+# QPerformance
+PRODUCT_BOOT_JARS += QPerformance
+
 # Recovery
 PRODUCT_PACKAGES += \
     librecovery_updater_xiaomi
