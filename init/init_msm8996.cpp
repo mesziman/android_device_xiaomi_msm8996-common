@@ -85,11 +85,9 @@ void check_device()
     sysinfo(&sys);
 
     if (sys.totalram > 3072ull * 1024 * 1024) {
-        // from - phone-xxxhdpi-4096-dalvik-heap.mk
         heapminfree = "4m";
         heapmaxfree = "16m";
     } else {
-        // from - phone-xxhdpi-3072-dalvik-heap.mk
         heapminfree = "512k";
         heapmaxfree = "8m";
     }
@@ -105,12 +103,6 @@ void vendor_load_properties()
 
     check_device();
 
-    property_set("dalvik.vm.heapstartsize", "8m");
-    property_set("dalvik.vm.heapgrowthlimit", "256m");
-    property_set("dalvik.vm.heapsize", "512m");
-    property_set("dalvik.vm.heaptargetutilization", "0.75");
     property_set("dalvik.vm.heapminfree", heapminfree);
     property_set("dalvik.vm.heapmaxfree", heapmaxfree);
-
-    init_alarm_boot_properties();
 }
