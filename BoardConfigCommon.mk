@@ -190,7 +190,6 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)
 # RIL
 BOARD_RIL_CLASS := ../../../$(VENDOR_PATH)/ril
 PROTOBUF_SUPPORTED := true
-TARGET_RIL_VARIANT := caf
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
