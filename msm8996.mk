@@ -129,6 +129,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     camera.device@3.2-impl \
     camera.msm8996 \
+    libmm-qcamera \
     Snap
 
 # CNE
@@ -167,11 +168,13 @@ PRODUCT_COPY_FILES += \
 
 # Doze mode
 PRODUCT_PACKAGES += \
-    XiaomiDoze
+    XiaomiDoze \
+    XiaomiPocketMode
 
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
+    fingerprintd \
 
 # For config.fs
 PRODUCT_PACKAGES += \

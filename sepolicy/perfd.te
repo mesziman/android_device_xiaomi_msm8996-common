@@ -1,3 +1,7 @@
+type perfd, domain;
+type perfd_exec, exec_type, file_type;
+init_daemon_domain(perfd)
+
 allow perfd cgroup:file r_file_perms;
 allow perfd cameraserver:process signull;
 # files in /data/misc/perfd and /data/system/perfd
