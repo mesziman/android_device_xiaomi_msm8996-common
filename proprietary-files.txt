@@ -106,9 +106,6 @@ etc/firmware/rampatch_tlv_3.2.tlv
 
 # Camera
 bin/mm-qcamera-daemon:vendor/bin/mm-qcamera-daemon
-lib/hw/camera.msm8996.so
-lib/libmmcamera_interface.so
-lib/libmmjpeg_interface.so
 lib/libmmlib2d_interface.so
 vendor/lib/libchromaflash.so
 vendor/lib/libflash_pmic.so
