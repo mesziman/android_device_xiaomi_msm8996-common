@@ -37,13 +37,6 @@ ro.btconfig.if=uart
 ro.btconfig.vendor=qcom
 ro.btconfig.chip=QCA6164
 ro.btconfig.dev=/dev/ttyHS0
-ro.qualcomm.bluetooth.ftp=true
-ro.qualcomm.bluetooth.hfp=true
-ro.qualcomm.bluetooth.hsp=true
-ro.qualcomm.bluetooth.map=true
-ro.qualcomm.bluetooth.nap=true
-ro.qualcomm.bluetooth.opp=true
-ro.qualcomm.bluetooth.pbap=true
 
 # Camera
 media.camera.ts.monotonic=0
@@ -97,8 +90,6 @@ persist.loc.nlp_name=com.qualcomm.location
 ro.gps.agps_provider=1
 
 # IMS
-persist.dbg.volte_avail_ovr=1
-persist.dbg.vt_avail_ovr=1
 persist.radio.NO_STAPA=1
 persist.radio.VT_HYBRID_ENABLE=1
 

@@ -47,13 +47,100 @@ case "$color" in
     "2")
         setprop sys.panel.color BLACK
         ;;
+    "3")
+        setprop sys.panel.color RED
+        ;;
+    "4")
+        setprop sys.panel.color YELLOW
+        ;;
+    "5")
+        setprop sys.panel.color GREEN
+        ;;
+    "6")
+        setprop sys.panel.color PINK
+        ;;
     "7")
         setprop sys.panel.color PURPLE
         ;;
     "8")
         setprop sys.panel.color GOLDEN
         ;;
+    "9")
+        setprop sys.panel.color SLIVER
+        ;;
+    "@")
+        setprop sys.panel.color GRAY
+        ;;
+    "A")
+        setprop sys.panel.color SLIVER_BLUE
+        ;;
+    "B")
+        setprop sys.panel.color CORAL_BLUE
+        ;;
     *)
         setprop sys.panel.color UNKNOWN
+        ;;
+esac
+
+case "$vendor" in
+    "1")
+        setprop sys.panel.vendor BIELTPB
+        ;;
+    "2")
+        setprop sys.panel.vendor LENS
+        ;;
+    "3")
+        setprop sys.panel.vendor WINTEK
+        ;;
+    "4")
+        setprop sys.panel.vendor OFILM
+        ;;
+    "5")
+        setprop sys.panel.vendor BIELD1
+        ;;
+    "6")
+        setprop sys.panel.vendor TPK
+        ;;
+    "7")
+        setprop sys.panel.vendor LAIBAO
+        ;;
+    "8")
+        setprop sys.panel.vendor SHARP
+        ;;
+    "9")
+        setprop sys.panel.vendor JDI
+        ;;
+    "@")
+        setprop sys.panel.vendor EELY
+        ;;
+    "A")
+        setprop sys.panel.vendor GISEBBG
+        ;;
+    "B")
+        setprop sys.panel.vendor LGD
+        ;;
+    "C")
+        setprop sys.panel.vendor AUO
+        ;;
+    "D")
+        setprop sys.panel.vendor BOE
+        ;;
+    "E")
+        setprop sys.panel.vendor DSMUDONG
+        ;;
+    "F")
+        setprop sys.panel.vendor TIANMA
+        ;;
+    "G")
+        setprop sys.panel.vendor TRULY
+        ;;
+    "H")
+        setprop sys.panel.vendor SDC
+        ;;
+    "I")
+        setprop sys.panel.vendor PRIMAX
+        ;;
+    *)
+        setprop sys.panel.vendor UNKNOWN
         ;;
 esac
