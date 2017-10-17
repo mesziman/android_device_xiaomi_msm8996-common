@@ -44,7 +44,7 @@
    "target_path": "vendor/xiaomi",
    "branch"     : "cm-14.1"
  },
- {i
+ {
    "repository" : "LineageOS/android_packages_resources_devicesettings",
    "target_path": "packages/resources/devicesettings",
    "branch"     : "cm-14.1"
