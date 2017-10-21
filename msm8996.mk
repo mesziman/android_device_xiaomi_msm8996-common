@@ -117,8 +117,7 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    Snap \
-    Jelly
+    Snap
 
 # CNE
 PRODUCT_PACKAGES += \
