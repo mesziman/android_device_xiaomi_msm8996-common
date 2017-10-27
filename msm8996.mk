@@ -116,7 +116,11 @@ PRODUCT_COPY_FILES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    Snap 
+    Snap \
+    Mixplorer \
+    Jelly \
+    Lawnchair \
+    K9
 
 # CNE
 PRODUCT_PACKAGES += \
