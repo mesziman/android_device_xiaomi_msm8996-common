@@ -17,7 +17,7 @@
 
 BOARD_VENDOR := xiaomi
 
-VENDOR_PATH := device/xiaomi/msm8996-common
+VENDOR_PATH := device/xiaomi/common
 
 TARGET_SPECIFIC_HEADER_PATH := $(VENDOR_PATH)/include
 
@@ -217,4 +217,4 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from the proprietary version
--include vendor/xiaomi/msm8996-common/BoardConfigVendor.mk
+-include vendor/xiaomi/common/BoardConfigVendor.mk
