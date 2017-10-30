@@ -29,10 +29,8 @@
 #define BDWLAN_FILE "/sys/module/cnss_common/parameters/bdwlan_file"
 #define FF_FLAG_FILE "/persist/ff_flag"
 
-#define SCORPIO_BDWLAN "bd30_a4.bin"
 #define CAPRICORN_BDWLAN "bd30_a7.bin"
 #define CAPRICORN_BDWLAN_FEM "bd30_a7.b02"
-#define LITHIUM_BDWLAN "bd30_a8.bin"
 #define NATRIUM_BDWLAN "bd30_b7.bin"
 #define NATRIUM_BDWLAN_FEM "bd30_b7.b02"
 
@@ -122,16 +120,12 @@ int main() {
 
     if (ISMATCH(product_device, "gemini")) {
         goto out;
-    } else if (ISMATCH(product_device, "scorpio")) {
-        fprintf(fp, "%s", SCORPIO_BDWLAN);
     } else if (ISMATCH(product_device, "capricorn")) {
         if (need_fem_fix()) {
             fprintf(fp, "%s", CAPRICORN_BDWLAN_FEM);
         } else {
             fprintf(fp, "%s", CAPRICORN_BDWLAN);
         }
-    } else if (ISMATCH(product_device, "lithium")) {
-        fprintf(fp, "%s", LITHIUM_BDWLAN);
     } else if (ISMATCH(product_device, "natrium")) {
         if (need_fem_fix()) {
             fprintf(fp, "%s", NATRIUM_BDWLAN_FEM);

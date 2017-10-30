@@ -34,12 +34,8 @@ static inline const char* BtmGetDefaultName()
         return "Xiaomi MI 5s";
     if (strstr(product_device, "gemini"))
         return "Xiaomi MI 5";
-    if (strstr(product_device, "lithium"))
-        return "Xiaomi MI MIX";
     if (strstr(product_device, "natrium"))
         return "Xiaomi MI 5s Plus";
-    if (strstr(product_device, "scorpio"))
-        return "Xiaomi MI Note 2";
 
     // Fallback to ro.product.model
     return "";
