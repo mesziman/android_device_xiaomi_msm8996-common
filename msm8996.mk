@@ -207,6 +207,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libjni_livedisplay
 
+PRODUCT_BOOT_JARS += QPerformance
+
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
@@ -221,8 +223,13 @@ PRODUCT_COPY_FILES += \
 # NFC
 PRODUCT_PACKAGES += \
     com.android.nfc_extras \
-    nfc_nci.pn54x.default \
-    NfcNci \
+    com.nxp.nfc.nq \
+    libnqnfc-nci \
+    libp61-jcop-kit \
+    nfc_nci.nqx.default \
+    NQNfcNci \
+    nqnfcee_access.xml \
+    nqnfcse_access.xml \
     Tag
 
 # OMX
