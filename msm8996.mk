@@ -118,12 +118,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     Snap \
     SnapdragonMusic \
-    SnapdragonLauncher \
-    Browser2 \
+    Margarita
     #Mixplorer \
-    Jelly \
-    Lawnchair \
-    K9
+    #Jelly \
+    #Lawnchair \
+    #K9
 
 # CNE
 PRODUCT_PACKAGES += \
