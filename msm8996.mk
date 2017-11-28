@@ -117,7 +117,8 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
     Snap \
-    Mixplorer \
+    SnapdragonMusic
+    #Mixplorer \
     Jelly \
     Lawnchair \
     K9
