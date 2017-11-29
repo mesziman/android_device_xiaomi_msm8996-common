@@ -1,0 +1,27 @@
+[
+ {
+   "repository" : "LineageOS/android_kernel_xiaomi_msm8996",
+   "target_path": "kernel/xiaomi/msm8996",
+   "branch"     : "cm-14.1"
+ },
+ {
+   "repository" : "mesziman/caprivendor",
+   "target_path": "vendor/xiaomi",
+   "branch"     : "meszibranch"
+ },
+ {
+   "repository" : "Citrus-CAF/hardware_qcom_media",
+   "target_path": "hardware/qcom/media",
+   "branch"     : "n7x-8996"
+ },
+ {
+   "repository" : "Citrus-CAF/hardware_qcom_display",
+   "target_path": "hardware/qcom/display",
+   "branch"     : "n7x-8996"
+ },
+ {
+   "repository" : "Citrus-CAF/hardware_qcom_audio",
+   "target_path": "hardware/qcom/audio",
+   "branch"     : "n7x-8996"
+ }
+]
