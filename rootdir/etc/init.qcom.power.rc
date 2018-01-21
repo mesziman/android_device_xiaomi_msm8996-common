@@ -24,43 +24,16 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+
 on init
-    # Create Power HAL tunables
-    mkdir /dev/voxpopuli 0555 system system
+    # Disable UFS powersaving
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 0
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 0
+    write /sys/devices/soc/${ro.boot.bootdevice}/${ro.boot.bootdevice}:ufs_variant/pm_qos_enable 0
+    write /sys/module/lpm_levels/parameters/sleep_disabled "Y"
 
 on boot
     # Update foreground and background cpusets
-    # Set Power HAL tunables
-    write /dev/voxpopuli/enable_interaction_boost   1
-    write /dev/voxpopuli/fling_min_boost_duration   200
-    write /dev/voxpopuli/fling_max_boost_duration   2500
-    write /dev/voxpopuli/fling_boost_topapp         10
-    write /dev/voxpopuli/fling_min_freq_big         1113
-    write /dev/voxpopuli/fling_min_freq_little      1113
-    write /dev/voxpopuli/touch_boost_duration       200
-    write /dev/voxpopuli/touch_boost_topapp         5
-    write /dev/voxpopuli/touch_min_freq_big         1036
-    write /dev/voxpopuli/touch_min_freq_little      1036
-    chmod 0644 /dev/voxpopuli/enable_interaction_boost
-    chmod 0644 /dev/voxpopuli/fling_min_boost_duration
-    chmod 0644 /dev/voxpopuli/fling_max_boost_duration
-    chmod 0644 /dev/voxpopuli/fling_boost_topapp
-    chmod 0644 /dev/voxpopuli/fling_min_freq_big
-    chmod 0644 /dev/voxpopuli/fling_min_freq_little
-    chmod 0644 /dev/voxpopuli/touch_boost_duration
-    chmod 0644 /dev/voxpopuli/touch_boost_topapp
-    chmod 0644 /dev/voxpopuli/touch_min_freq_big
-    chmod 0644 /dev/voxpopuli/touch_min_freq_little
-    chown system system /dev/voxpopuli/enable_interaction_boost
-    chown system system /dev/voxpopuli/fling_min_boost_duration
-    chown system system /dev/voxpopuli/fling_max_boost_duration
-    chown system system /dev/voxpopuli/fling_boost_topapp
-    chown system system /dev/voxpopuli/fling_min_freq_big
-    chown system system /dev/voxpopuli/fling_min_freq_little
-    chown system system /dev/voxpopuli/touch_boost_duration
-    chown system system /dev/voxpopuli/touch_boost_topapp
-    chown system system /dev/voxpopuli/touch_min_freq_big
-    chown system system /dev/voxpopuli/touch_min_freq_little
     write /dev/cpuset/foreground/cpus 0-3
     write /dev/cpuset/foreground/boost/cpus 0-3
     write /dev/cpuset/background/cpus 0-3
@@ -80,9 +53,15 @@ on boot
     write /proc/sys/kernel/sched_boost 1
 
 on charger
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    # Enable UFS powersaving
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 1
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 1
+    write /sys/devices/soc/${ro.boot.bootdevice}/${ro.boot.bootdevice}:ufs_variant/pm_qos_enable 1
+    write /sys/module/lpm_levels/parameters/sleep_disabled "N"
+
     wait /dev/block/bootdevice/by-name/system
     mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
-    write /sys/module/lpm_levels/parameters/sleep_disabled 0
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "userspace"
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed 300000
     write /sys/devices/system/cpu/cpu1/online 1
@@ -100,6 +79,9 @@ on enable-low-power
     # Enable Adaptive LMK
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
     write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
+
+    # Set sync wakee policy tunable
+    write /proc/sys/kernel/sched_prefer_sync_wakee_to_waker 1
 
     # Configure governor settings for little cluster
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
@@ -174,6 +156,11 @@ on enable-low-power
     write /sys/class/devfreq/soc:qcom,memlat-cpu2/polling_interval 10
     write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
 
+    # Enable UFS powersaving
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 1
+    write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 1
+    write /sys/devices/soc/${ro.boot.bootdevice}/${ro.boot.bootdevice}:ufs_variant/pm_qos_enable 1
+
     # Enable all LPMs (this will enable C4, D4, D3, E4 and M3 LPMs)
     write /sys/module/lpm_levels/parameters/sleep_disabled "N"
 
@@ -183,14 +170,14 @@ on enable-low-power
     # Set perfd properties
     setprop sys.post_boot.parsed 1
 
-    # Start IO prefetcher service
-    start iop
-
-on class_start:late_start
+on property:sys.boot_completed=1
     trigger enable-low-power
 
-on property:dev.bootcomplete=1
+    # Set I/O squeduler
     setprop sys.io.scheduler "bfq"
+
+    # Start I/O prefetcher service
+    start iop
 
 on property:init.svc.recovery=running
     trigger enable-low-power
@@ -210,20 +197,4 @@ service energy-awareness /system/vendor/bin/energy-awareness
 service hvdcp_opti /system/vendor/bin/hvdcp_opti
     class main
     user root
-    group root
-
-service iop /system/vendor/bin/iop
-    class main
-    user root
-    group root
-    disabled
-    socket iop seqpacket 0666 root system
-    writepid /dev/cpuset/system-background/tasks
-
-service perfd /system/vendor/bin/perfd
-    class main
-    user root
-    group root readproc
-    disabled
-    socket perfd seqpacket 0666 root system
-    writepid /dev/cpuset/system-background/tasks
+    group system wakelock
