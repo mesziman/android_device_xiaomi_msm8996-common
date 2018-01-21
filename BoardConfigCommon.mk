@@ -55,10 +55,10 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 KERNEL_TOOLCHAIN_PREFIX :=$(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-
 
 #EAS vox populi
-ENABLE_CPUSETS := true
-ENABLE_SCHEDBOOST := true
-TARGET_POWERHAL_VARIANT := voxpopuli
-TARGET_USES_INTERACTION_BOOST := true
+#ENABLE_CPUSETS := true
+#ENABLE_SCHEDBOOST := true
+#TARGET_POWERHAL_VARIANT := voxpopuli
+#TARGET_USES_INTERACTION_BOOST := true
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8996
@@ -201,7 +201,7 @@ PROTOBUF_SUPPORTED := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
--include device/voxpopuli/sepolicy/sepolicy.mk
+#-include device/voxpopuli/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += $(VENDOR_PATH)/sepolicy
 
