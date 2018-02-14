@@ -102,6 +102,7 @@ persist.mm.enable.prefetch=true
 # IMS
 persist.dbg.volte_avail_ovr=1
 persist.dbg.vt_avail_ovr=1
+persist.radio.aosp_usr_pref_sel=true
 
 # Media
 vendor.vidc.enc.disable.pq=true
