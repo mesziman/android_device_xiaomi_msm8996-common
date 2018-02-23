@@ -17,7 +17,7 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
   <!-- Button settings -->
-  <string name="button_panel_title">Dodatkowe przyciski</string>
+  <string name="button_panel_title">Funkcje urządzenia</string>
   <string name="button_swap_title">Zamień przyciski</string>
   <string name="button_swap_summary">Zamień miejscami przyciski ostatnio uruchomionych aplikacji i powrotu</string>
 </resources>
